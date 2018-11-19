@@ -104,7 +104,8 @@ class AdminController extends Controller {
                     $session["authUrls"] = $authModel->getAuthurls();
                     $format = 'y/m/d h:i:s';
                     SysAdmin::updateAll(["last_login" => date($format)], ["admin_id" => $session["admin_id"]]);
-                    return $this->redirect('/');
+                    $this->redirect('/');
+                    Yii::$app->end();
                 } elseif ($ret === false) {
                     return $this->render('login', ["msg" => "请输入正确的账号密码！"]);
                 } else {
